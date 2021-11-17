@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class ShippingCosts {
 
     /*
@@ -23,4 +25,48 @@ public class ShippingCosts {
      */
 
 
+    public static void main(String[] args) {
+
+        double weight = Double.parseDouble(JOptionPane.showInputDialog( "Enter the weight of the package in pounds"));
+        int distance = Integer.parseInt(JOptionPane.showInputDialog( "Enter the distance traveled to the nearest mile"));
+        double shippingRate;
+        double cost;
+
+        if(weight>=10){
+            shippingRate = 4.80;
+        }else{
+            if(weight>6){
+                shippingRate = 3.70;
+            }else{
+                if(weight>2){
+                    shippingRate = 2.20;
+                }else{
+                    shippingRate = 1.10;
+                }
+            }
+        }
+        cost = cost(shippingRate,distance);
+
+        JOptionPane.showMessageDialog(null, "The cost is: " + cost);
+
+
+    }
+
+    public static double cost(double rate, int miles) {
+
+
+        int costMultiplier = miles / 100 +1;
+        if (costMultiplier == 0) {
+            costMultiplier = 1;
+        }
+        return rate * costMultiplier;
+    }
 }
+
+
+
+
+
+
+
+
